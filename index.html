@@ -179,7 +179,7 @@ tr.total td { font-weight: 700; }
 tr.total { background: var(--best-bg); }
 
 .ref-table { overflow-x: auto; }
-.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 460px; }
+.ref-table table { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 0; }
 .ref-table th, .ref-table td { padding: 0.5rem 0.5rem; border-bottom: 1px solid var(--line); text-align: left; }
 .ref-table td.num { font-variant-numeric: tabular-nums; text-align: right; }
 .ref-table tr.highlight td { background: var(--best-bg); font-weight: 700; }
@@ -260,6 +260,15 @@ footer.site-footer a { color: var(--accent); }
 .breadcrumb { font-size: 0.78rem; color: var(--muted); margin-bottom: 1.1rem; }
 .breadcrumb a { color: var(--accent); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
+/* スマホで表が画面からはみ出さないように（2026-11-17） */
+@media (max-width: 600px) {
+  .ref-table table { font-size: 0.8rem; }
+  .ref-table th, .ref-table td { padding: 0.45rem 0.3rem; }
+  .ref-table th, .ref-table td:first-child { white-space: normal; }
+  .ref-table td.nw { white-space: nowrap; }
+  .ref-table th:first-child, .ref-table td:first-child { min-width: 5em; position: sticky; left: 0; z-index: 1; background: var(--bg); box-shadow: 1px 0 0 var(--line); }
+  .ref-table tr.best td:first-child, .ref-table tr.total td:first-child, .ref-table tr.next td:first-child, .ref-table tr.highlight td:first-child { background: var(--best-bg, var(--bg)); }
+}
 </style>
 </head>
 <body>
@@ -332,53 +341,53 @@ footer.site-footer a { color: var(--accent); }
         <table>
           <thead><tr><th>都道府県</th><th class="num">新しい最低賃金</th><th class="num">引き上げ額</th><th>発効日</th></tr></thead>
           <tbody id="allPrefTableBody">
-            <tr class="pref-row" data-index="0" style="cursor:pointer;"><td>東京</td><td class="num">1,280円</td><td class="num">+54円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="1" style="cursor:pointer;"><td>神奈川</td><td class="num">1,279円</td><td class="num">+54円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="2" style="cursor:pointer;"><td>大阪</td><td class="num">1,231円</td><td class="num">+54円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="3" style="cursor:pointer;"><td>埼玉</td><td class="num">1,196円</td><td class="num">+55円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="4" style="cursor:pointer;"><td>千葉</td><td class="num">1,195円</td><td class="num">+55円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="5" style="cursor:pointer;"><td>愛知</td><td class="num">1,195円</td><td class="num">+55円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="6" style="cursor:pointer;"><td>京都</td><td class="num">1,180円</td><td class="num">+58円</td><td>2026年11月16日</td></tr>
-            <tr class="pref-row" data-index="7" style="cursor:pointer;"><td>兵庫</td><td class="num">1,172円</td><td class="num">+56円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="8" style="cursor:pointer;"><td>静岡</td><td class="num">1,154円</td><td class="num">+57円</td><td>2026年10月15日</td></tr>
-            <tr class="pref-row" data-index="9" style="cursor:pointer;"><td>三重</td><td class="num">1,143円</td><td class="num">+56円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="10" style="cursor:pointer;"><td>広島</td><td class="num">1,141円</td><td class="num">+56円</td><td>2026年10月11日</td></tr>
-            <tr class="pref-row" data-index="11" style="cursor:pointer;"><td>茨城</td><td class="num">1,136円</td><td class="num">+62円</td><td>2026年10月18日</td></tr>
-            <tr class="pref-row" data-index="12" style="cursor:pointer;"><td>滋賀</td><td class="num">1,136円</td><td class="num">+56円</td><td>2026年10月3日</td></tr>
-            <tr class="pref-row" data-index="13" style="cursor:pointer;"><td>北海道</td><td class="num">1,131円</td><td class="num">+56円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="14" style="cursor:pointer;"><td>栃木</td><td class="num">1,125円</td><td class="num">+57円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="15" style="cursor:pointer;"><td>岐阜</td><td class="num">1,121円</td><td class="num">+56円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="16" style="cursor:pointer;"><td>群馬</td><td class="num">1,120円</td><td class="num">+57円</td><td>2026年10月3日</td></tr>
-            <tr class="pref-row" data-index="17" style="cursor:pointer;"><td>富山</td><td class="num">1,119円</td><td class="num">+57円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="18" style="cursor:pointer;"><td>長野</td><td class="num">1,117円</td><td class="num">+56円</td><td>2026年10月2日</td></tr>
-            <tr class="pref-row" data-index="19" style="cursor:pointer;"><td>福岡</td><td class="num">1,114円</td><td class="num">+57円</td><td>2026年10月4日</td></tr>
-            <tr class="pref-row" data-index="20" style="cursor:pointer;"><td>石川</td><td class="num">1,113円</td><td class="num">+59円</td><td>2026年10月3日</td></tr>
-            <tr class="pref-row" data-index="21" style="cursor:pointer;"><td>山梨</td><td class="num">1,113円</td><td class="num">+61円</td><td>2026年11月1日</td></tr>
-            <tr class="pref-row" data-index="22" style="cursor:pointer;"><td>福井</td><td class="num">1,112円</td><td class="num">+59円</td><td>2026年10月4日</td></tr>
-            <tr class="pref-row" data-index="23" style="cursor:pointer;"><td>新潟</td><td class="num">1,108円</td><td class="num">+58円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="24" style="cursor:pointer;"><td>奈良</td><td class="num">1,107円</td><td class="num">+56円</td><td>2026年10月4日</td></tr>
-            <tr class="pref-row" data-index="25" style="cursor:pointer;"><td>岡山</td><td class="num">1,104円</td><td class="num">+57円</td><td>2026年10月2日</td></tr>
-            <tr class="pref-row" data-index="26" style="cursor:pointer;"><td>徳島</td><td class="num">1,103円</td><td class="num">+57円</td><td>2026年11月1日</td></tr>
-            <tr class="pref-row" data-index="27" style="cursor:pointer;"><td>和歌山</td><td class="num">1,101円</td><td class="num">+56円</td><td>2026年10月3日</td></tr>
-            <tr class="pref-row" data-index="28" style="cursor:pointer;"><td>山口</td><td class="num">1,101円</td><td class="num">+58円</td><td>2026年10月8日</td></tr>
-            <tr class="pref-row" data-index="29" style="cursor:pointer;"><td>宮城</td><td class="num">1,098円</td><td class="num">+60円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="30" style="cursor:pointer;"><td>大分</td><td class="num">1,096円</td><td class="num">+61円</td><td>2026年11月1日</td></tr>
-            <tr class="pref-row" data-index="31" style="cursor:pointer;"><td>佐賀</td><td class="num">1,095円</td><td class="num">+65円</td><td>2026年11月15日</td></tr>
-            <tr class="pref-row" data-index="32" style="cursor:pointer;"><td>福島</td><td class="num">1,094円</td><td class="num">+61円</td><td>2026年10月16日</td></tr>
-            <tr class="pref-row" data-index="33" style="cursor:pointer;"><td>愛媛</td><td class="num">1,093円</td><td class="num">+60円</td><td>2026年11月1日</td></tr>
-            <tr class="pref-row" data-index="34" style="cursor:pointer;"><td>山形</td><td class="num">1,092円</td><td class="num">+60円</td><td>2026年10月30日</td></tr>
-            <tr class="pref-row" data-index="35" style="cursor:pointer;"><td>島根</td><td class="num">1,092円</td><td class="num">+59円</td><td>2026年10月10日</td></tr>
-            <tr class="pref-row" data-index="36" style="cursor:pointer;"><td>香川</td><td class="num">1,092円</td><td class="num">+56円</td><td>2026年10月1日</td></tr>
-            <tr class="pref-row" data-index="37" style="cursor:pointer;"><td>熊本</td><td class="num">1,092円</td><td class="num">+58円</td><td>2026年12月1日</td></tr>
-            <tr class="pref-row" data-index="38" style="cursor:pointer;"><td>青森</td><td class="num">1,090円</td><td class="num">+61円</td><td>2026年10月29日</td></tr>
-            <tr class="pref-row" data-index="39" style="cursor:pointer;"><td>岩手</td><td class="num">1,090円</td><td class="num">+59円</td><td>2026年12月1日</td></tr>
-            <tr class="pref-row" data-index="40" style="cursor:pointer;"><td>秋田</td><td class="num">1,090円</td><td class="num">+59円</td><td>2026年10月14日</td></tr>
-            <tr class="pref-row" data-index="41" style="cursor:pointer;"><td>鳥取</td><td class="num">1,090円</td><td class="num">+60円</td><td>2026年10月3日</td></tr>
-            <tr class="pref-row" data-index="42" style="cursor:pointer;"><td>鹿児島</td><td class="num">1,090円</td><td class="num">+64円</td><td>2026年10月25日</td></tr>
-            <tr class="pref-row" data-index="43" style="cursor:pointer;"><td>長崎</td><td class="num">1,087円</td><td class="num">+56円</td><td>2026年11月2日</td></tr>
-            <tr class="pref-row" data-index="44" style="cursor:pointer;"><td>高知</td><td class="num">1,086円</td><td class="num">+63円</td><td>2026年10月29日</td></tr>
-            <tr class="pref-row" data-index="45" style="cursor:pointer;"><td>沖縄</td><td class="num">1,086円</td><td class="num">+63円</td><td>2026年12月2日</td></tr>
-            <tr class="pref-row" data-index="46" style="cursor:pointer;"><td>宮崎</td><td class="num">1,085円</td><td class="num">+62円</td><td>2026年10月24日</td></tr>
+            <tr class="pref-row" data-index="0" style="cursor:pointer;"><td>東京</td><td class="num nw">1,280円</td><td class="num nw">+54円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="1" style="cursor:pointer;"><td>神奈川</td><td class="num nw">1,279円</td><td class="num nw">+54円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="2" style="cursor:pointer;"><td>大阪</td><td class="num nw">1,231円</td><td class="num nw">+54円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="3" style="cursor:pointer;"><td>埼玉</td><td class="num nw">1,196円</td><td class="num nw">+55円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="4" style="cursor:pointer;"><td>千葉</td><td class="num nw">1,195円</td><td class="num nw">+55円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="5" style="cursor:pointer;"><td>愛知</td><td class="num nw">1,195円</td><td class="num nw">+55円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="6" style="cursor:pointer;"><td>京都</td><td class="num nw">1,180円</td><td class="num nw">+58円</td><td>2026年11月16日</td></tr>
+            <tr class="pref-row" data-index="7" style="cursor:pointer;"><td>兵庫</td><td class="num nw">1,172円</td><td class="num nw">+56円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="8" style="cursor:pointer;"><td>静岡</td><td class="num nw">1,154円</td><td class="num nw">+57円</td><td>2026年10月15日</td></tr>
+            <tr class="pref-row" data-index="9" style="cursor:pointer;"><td>三重</td><td class="num nw">1,143円</td><td class="num nw">+56円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="10" style="cursor:pointer;"><td>広島</td><td class="num nw">1,141円</td><td class="num nw">+56円</td><td>2026年10月11日</td></tr>
+            <tr class="pref-row" data-index="11" style="cursor:pointer;"><td>茨城</td><td class="num nw">1,136円</td><td class="num nw">+62円</td><td>2026年10月18日</td></tr>
+            <tr class="pref-row" data-index="12" style="cursor:pointer;"><td>滋賀</td><td class="num nw">1,136円</td><td class="num nw">+56円</td><td>2026年10月3日</td></tr>
+            <tr class="pref-row" data-index="13" style="cursor:pointer;"><td>北海道</td><td class="num nw">1,131円</td><td class="num nw">+56円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="14" style="cursor:pointer;"><td>栃木</td><td class="num nw">1,125円</td><td class="num nw">+57円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="15" style="cursor:pointer;"><td>岐阜</td><td class="num nw">1,121円</td><td class="num nw">+56円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="16" style="cursor:pointer;"><td>群馬</td><td class="num nw">1,120円</td><td class="num nw">+57円</td><td>2026年10月3日</td></tr>
+            <tr class="pref-row" data-index="17" style="cursor:pointer;"><td>富山</td><td class="num nw">1,119円</td><td class="num nw">+57円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="18" style="cursor:pointer;"><td>長野</td><td class="num nw">1,117円</td><td class="num nw">+56円</td><td>2026年10月2日</td></tr>
+            <tr class="pref-row" data-index="19" style="cursor:pointer;"><td>福岡</td><td class="num nw">1,114円</td><td class="num nw">+57円</td><td>2026年10月4日</td></tr>
+            <tr class="pref-row" data-index="20" style="cursor:pointer;"><td>石川</td><td class="num nw">1,113円</td><td class="num nw">+59円</td><td>2026年10月3日</td></tr>
+            <tr class="pref-row" data-index="21" style="cursor:pointer;"><td>山梨</td><td class="num nw">1,113円</td><td class="num nw">+61円</td><td>2026年11月1日</td></tr>
+            <tr class="pref-row" data-index="22" style="cursor:pointer;"><td>福井</td><td class="num nw">1,112円</td><td class="num nw">+59円</td><td>2026年10月4日</td></tr>
+            <tr class="pref-row" data-index="23" style="cursor:pointer;"><td>新潟</td><td class="num nw">1,108円</td><td class="num nw">+58円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="24" style="cursor:pointer;"><td>奈良</td><td class="num nw">1,107円</td><td class="num nw">+56円</td><td>2026年10月4日</td></tr>
+            <tr class="pref-row" data-index="25" style="cursor:pointer;"><td>岡山</td><td class="num nw">1,104円</td><td class="num nw">+57円</td><td>2026年10月2日</td></tr>
+            <tr class="pref-row" data-index="26" style="cursor:pointer;"><td>徳島</td><td class="num nw">1,103円</td><td class="num nw">+57円</td><td>2026年11月1日</td></tr>
+            <tr class="pref-row" data-index="27" style="cursor:pointer;"><td>和歌山</td><td class="num nw">1,101円</td><td class="num nw">+56円</td><td>2026年10月3日</td></tr>
+            <tr class="pref-row" data-index="28" style="cursor:pointer;"><td>山口</td><td class="num nw">1,101円</td><td class="num nw">+58円</td><td>2026年10月8日</td></tr>
+            <tr class="pref-row" data-index="29" style="cursor:pointer;"><td>宮城</td><td class="num nw">1,098円</td><td class="num nw">+60円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="30" style="cursor:pointer;"><td>大分</td><td class="num nw">1,096円</td><td class="num nw">+61円</td><td>2026年11月1日</td></tr>
+            <tr class="pref-row" data-index="31" style="cursor:pointer;"><td>佐賀</td><td class="num nw">1,095円</td><td class="num nw">+65円</td><td>2026年11月15日</td></tr>
+            <tr class="pref-row" data-index="32" style="cursor:pointer;"><td>福島</td><td class="num nw">1,094円</td><td class="num nw">+61円</td><td>2026年10月16日</td></tr>
+            <tr class="pref-row" data-index="33" style="cursor:pointer;"><td>愛媛</td><td class="num nw">1,093円</td><td class="num nw">+60円</td><td>2026年11月1日</td></tr>
+            <tr class="pref-row" data-index="34" style="cursor:pointer;"><td>山形</td><td class="num nw">1,092円</td><td class="num nw">+60円</td><td>2026年10月30日</td></tr>
+            <tr class="pref-row" data-index="35" style="cursor:pointer;"><td>島根</td><td class="num nw">1,092円</td><td class="num nw">+59円</td><td>2026年10月10日</td></tr>
+            <tr class="pref-row" data-index="36" style="cursor:pointer;"><td>香川</td><td class="num nw">1,092円</td><td class="num nw">+56円</td><td>2026年10月1日</td></tr>
+            <tr class="pref-row" data-index="37" style="cursor:pointer;"><td>熊本</td><td class="num nw">1,092円</td><td class="num nw">+58円</td><td>2026年12月1日</td></tr>
+            <tr class="pref-row" data-index="38" style="cursor:pointer;"><td>青森</td><td class="num nw">1,090円</td><td class="num nw">+61円</td><td>2026年10月29日</td></tr>
+            <tr class="pref-row" data-index="39" style="cursor:pointer;"><td>岩手</td><td class="num nw">1,090円</td><td class="num nw">+59円</td><td>2026年12月1日</td></tr>
+            <tr class="pref-row" data-index="40" style="cursor:pointer;"><td>秋田</td><td class="num nw">1,090円</td><td class="num nw">+59円</td><td>2026年10月14日</td></tr>
+            <tr class="pref-row" data-index="41" style="cursor:pointer;"><td>鳥取</td><td class="num nw">1,090円</td><td class="num nw">+60円</td><td>2026年10月3日</td></tr>
+            <tr class="pref-row" data-index="42" style="cursor:pointer;"><td>鹿児島</td><td class="num nw">1,090円</td><td class="num nw">+64円</td><td>2026年10月25日</td></tr>
+            <tr class="pref-row" data-index="43" style="cursor:pointer;"><td>長崎</td><td class="num nw">1,087円</td><td class="num nw">+56円</td><td>2026年11月2日</td></tr>
+            <tr class="pref-row" data-index="44" style="cursor:pointer;"><td>高知</td><td class="num nw">1,086円</td><td class="num nw">+63円</td><td>2026年10月29日</td></tr>
+            <tr class="pref-row" data-index="45" style="cursor:pointer;"><td>沖縄</td><td class="num nw">1,086円</td><td class="num nw">+63円</td><td>2026年12月2日</td></tr>
+            <tr class="pref-row" data-index="46" style="cursor:pointer;"><td>宮崎</td><td class="num nw">1,085円</td><td class="num nw">+62円</td><td>2026年10月24日</td></tr>
           </tbody>
         </table>
       </div>
@@ -393,10 +402,10 @@ footer.site-footer a { color: var(--accent); }
       <table>
         <thead><tr><th>項目</th><th class="num">値</th></tr></thead>
         <tbody>
-          <tr><td>東京都の新しい最低賃金（2026年10月1日〜）</td><td class="num">1,280円</td></tr>
-          <tr><td>今の時給との差</td><td class="num">+230円</td></tr>
+          <tr><td>東京都の新しい最低賃金（2026年10月1日〜）</td><td class="num nw">1,280円</td></tr>
+          <tr><td>今の時給との差</td><td class="num nw">+230円</td></tr>
           <tr><td>週の労働時間（1日5時間×週3日）</td><td class="num">15時間</td></tr>
-          <tr><td>今の時給での月収目安</td><td class="num">約6.8万円</td></tr>
+          <tr><td>今の時給での月収目安</td><td class="num nw">約6.8万円</td></tr>
           <tr class="total"><td>新しい最低賃金での月収目安</td><td class="num">約8.3万円（+約1.5万円）</td></tr>
         </tbody>
       </table>
